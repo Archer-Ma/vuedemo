@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for</title>
+    <script type="text/javascript" src="./../js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-for</h1>
+    <hr>
+    <div id="app">
+        <ol>
+            <li v-for="item in arrayitem">{{item}}</li>
+        </ol>
+        <ul>
+            <li v-for="(newitem,index) in sortArrayItem">{{index+1}}-{{newitem}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="studentitem in students">
+                {{studentitem.name}}-{{studentitem.age}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="studentitem in sortStudent">
+                {{studentitem.name}}-{{studentitem.age}}
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <h2>age</h2>
+            <li v-for="item in sortStudentAgeArr">
+                {{item.name}}-{{item.age}}
+            </li>
+        </ul>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                arrayitem: [1, 85, 25, 12, 6, 18, 0.5, , 1, ],
+                students: [{
+                    name: 'xiaoqiang',
+                    age: '15'
+                }, {
+                    name: 'zhangsan',
+                    age: '19'
+                }, {
+                    name: 'xiag',
+                    age: '24'
+                }, {
+                    name: 'abc',
+                    age: '5'
+                }, {
+                    name: 'yinzi',
+                    age: '66'
+                }, ]
+            },
+            computed: {
+                sortArrayItem: function() {
+                    return this.arrayitem.sort(sortNum)
+                },
+                sortStudent: function() {
+                    return (sortStudentAge(this.students, 'age'))
+                        // return (sortStudentAge(this.students, this.students.age))
+                },
+                sortStudentAgeArr: function() {
+                    return this.students.sort(sortStudentAgeB(this.students.age))
+                        // return students.sort(sortStudentAgeB('age'))    
+                }
+            }
+
+        })
+
+        // 数组排序
+        function sortNum(a, b) {
+            return (a - b)
+        }
+        // 对象排序
+        // function sortStudentAge(arr, key) {
+        function sortStudentAge(studentsArr, age) {
+            console.log(studentsArr)
+            console.log(studentsArr[0].age)
+            return studentsArr.sort(function(a, b) {
+                let x = a.age;
+                let y = b.age;
+                return (x - y < 0 ? -1 : 1)
+            })
+        }
+
+        function sortStudentAgeB(params) {
+            return function(a, b) {
+                let x = a.params;
+                let y = b.params;
+                return x - y
+            }
+        }
+    </script>
+</body>
+
+</html>
