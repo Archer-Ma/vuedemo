@@ -1,0 +1,22 @@
+{
+  "name": "vuedemo",
+  "version": "1.0.0",
+  "description": "vue demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Archer-Ma/vuedemo.git"
+  },
+  "keywords": [
+    "learning"
+  ],
+  "author": "Archer-ma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Archer-Ma/vuedemo/issues"
+  },
+  "homepage": "https://github.com/Archer-Ma/vuedemo#readme"
+}
