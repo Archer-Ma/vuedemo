@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on</title>
+    <script type="text/javascript" src="./../js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-on</h1>
+    <hr>
+    <div id="app">
+        <h1>分数：{{points}}</h1>
+        <button v-on:click="add">加分</button> <button v-on:click="reduce">减分</button>
+        <input type="text" @keyup.enter="enterPoint" v-model="changePoint">
+        <ul>
+            <li v-for="item in students">{{item.name}}--{{item.age}}</li>
+        </ul>
+        <ul>
+            <li v-for="item in sortStudentAgeArr">{{item.name}}--{{item.age}}</li>
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+        var app = new Vue({
+                el: "#app",
+                data: {
+                    points: 0,
+                    changePoint: 2,
+                    students: [{
+                        name: 'xiaoqiang',
+                        age: '15'
+                    }, {
+                        name: 'zhangsan',
+                        age: '19'
+                    }, {
+                        name: 'xiag',
+                        age: '24'
+                    }, {
+                        name: 'abc',
+                        age: '5'
+                    }, {
+                        name: 'yinzi',
+                        age: '66'
+                    }, ]
+                },
+                methods: {
+                    add: function() {
+                        this.points++
+                    },
+                    reduce: function() {
+                        this.points--
+                    },
+                    enterPoint: function() {
+                        console.log("ss")
+                        console.log(this.changePoint)
+                        console.log(this.points)
+                        this.points = this.points + parseInt(this.changePoint)
+                    }
+                },
+                computed: {
+                    sortStudentAgeArr: function() {
+                        // return sortStudentAgeArrB(this.students, 'age')
+                        return this.students.sort(sortStudentAgeArrB(this.students.age))
+                    },
+
+                },
+            })
+            // function sortStudentAgeArrB(arr, age) {
+            //     console.log(arr)
+            //     return arr.sort(function(a, b) {
+            //         let x = a.age;
+            //         let y = b.age;
+            //         console.log(x)
+            //         console.log(y)
+            //         return (x - y)
+            //     })
+            // }
+        function sortStudentAgeArrB(age) {
+
+            return function(a, b) {
+                let x = a.age;
+                let y = b.age;
+                console.log(x)
+                console.log(y)
+                return (x - y)
+            }
+        }
+    </script>
+</body>
+
+</html>

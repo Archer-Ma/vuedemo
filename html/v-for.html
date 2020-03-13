@@ -72,7 +72,7 @@
                 },
                 sortStudentAgeArr: function() {
                     return this.students.sort(sortStudentAgeB(this.students.age))
-                        // return students.sort(sortStudentAgeB('age'))    
+                        // return this.students.sort(sortStudentAgeB('age'))
                 }
             }
 
@@ -95,6 +95,7 @@
         }
 
         function sortStudentAgeB(params) {
+            console.log(params)
             return function(a, b) {
                 let x = a.params;
                 let y = b.params;
