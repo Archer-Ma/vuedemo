@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model 实例</title>
+    <script src="./../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='vapp'>
+        <h1>v-model 实例</h1>
+
+        <hr>
+        <h1>文本信息</h1>
+        <h2>{{message}}.hhh</h2>
+        <input type="text" v-model="message">
+        <hr>
+        <h1>v-model 修饰符</h1>
+        <h2>v-model:lazy 懒加载 <input type="text" v-model.lazy="message"></h2>
+        <h2>v-model:number 数字only <input type="text" v-model.number="message"></h2>
+        <h2>v-model:trim 去掉空格 <input type="text" v-model.trim="message"></h2>
+        <hr>
+        <h1>文本域</h1>
+        <h2>{{message}}.hhh</h2>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <hr>
+        <h1>多选框</h1>
+        <h2>{{onecheck}}</h2>
+        <input type="checkbox" id="a1" value="a1" v-model="onecheck">
+        <label for="a1">一个多选框</label>
+
+        <hr>
+        <h1>多选框数组</h1>
+        <h2>{{mutcheck}}</h2>
+        <input type="checkbox" id="a1" value="a1" v-model="mutcheck">
+        <label for="a1">a1</label>
+        <input type="checkbox" id="a1" value="a2" v-model="mutcheck">
+        <label for="a1">a2</label>
+        <input type="checkbox" id="a1" value="a3" v-model="mutcheck">
+        <label for="a1">a3</label>
+        <input type="checkbox" id="a1" value="a4" v-model="mutcheck">
+        <label for="a1">a4</label>
+        <hr>
+        <h1>单选框</h1>
+        <h2>{{radio}}</h2>
+        <input type="radio" name="" value="男" id="oneradio" v-model='radio'>
+        <label for="oneradio">男</label>
+        <input type="radio" name="" value="女" id="tworadio" v-model='radio'>
+        <label for="tworadio">女</label>
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            el: "#vapp",
+            data: {
+                message: "hello world",
+                onecheck: "",
+                mutcheck: [],
+                radio: ""
+
+            },
+        })
+    </script>
+</body>
+
+</html>
