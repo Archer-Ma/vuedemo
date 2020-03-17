@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <script type="text/javascript" src="./../js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <hr>
+    <div id="app">
+        <h1>{{num}}</h1>
+        <button @click="add">增加</button>
+        <div v-customize="color">{{num}}</div>
+        <div v-life="chageColor">{{num}}</div>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.directive('customize', function(el, binding, vnode) {
+            console.log(vnode)
+            console.log(el)
+            console.log(binding)
+            console.log(binding.name)
+            console.log(binding.value)
+            console.log(binding.expression)
+            el.style = `color:${binding.value}`
+        })
+        Vue.directive('life', {
+            bind: function(el, binding) {
+                console.log('1 bind 只调用一次，用于指令第一次绑定到元素使用，一般用于定义初始化动作')
+
+                // console.log(el)
+                // console.log(binding)
+                // console.log(binding.value.color)
+                // console.log(binding.expression)
+                el.style = `color:${binding.value.color};font-size:${binding.value.fontSize}`
+            },
+            inserted: function() {
+                console.log('2 inserted 用于被绑定元素插入到父元素节点时调用（父节点存在即可调用，不必存在于document中）')
+            },
+            update: function(el, binding) {
+                console.log('3 updated 被元素绑定的模板更新时调用，不管值是否变化，都会作比较，可以忽略不必要的模板更新')
+                el.style = `color:green`
+            },
+            componentUpdated: function() {
+                console.log('4 componentUpdated 被绑定的元素在完成一次更新周期时调用')
+            },
+            unbind: function() {
+                console.log('5 只调用一次，指令与元素解绑时调用')
+            },
+
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 10,
+                color: 'red',
+                chageColor: {
+                    color: 'blue',
+                    fontSize: '30px'
+                }
+            },
+            methods: {
+                add: function() {
+                    this.num++
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

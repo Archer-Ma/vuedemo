@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.extend</title>
+    <script type="text/javascript" src="./../js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.extend 构造器扩展</h1>
+    <hr>
+    <div id="peoplename"> </div>
+    <peoplename></peoplename>
+
+    <script type="text/javascript">
+        var peoplename = Vue.extend({
+            template: "<p><a v-bind:href='peoplenameUrl'>{{peoplenameText}}</a></p>",
+            data: function() {
+                return {
+                    peoplenameUrl: 'http://www.jspang.com',
+                    peoplenameText: "技术胖"
+                }
+            }
+        })
+        new peoplename().$mount('peoplename')
+        new peoplename().$mount('#peoplename')
+    </script>
+</body>
+
+</html>

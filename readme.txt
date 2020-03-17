@@ -1,2 +1,2 @@
 ﻿vue 学习记录
-vue 个人学习demo
+vue 菜鸡的学习打卡日程demo
